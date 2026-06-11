@@ -26,6 +26,7 @@ window.CARDS = [
     "furi": "「お寺も、もっと宣伝して人を集めたほうがいいんじゃないか」——そんな声を、ときどき聞きます。",
     "ochi": "灯台は、光を強くして「ここにいるよ」と見つけやすく立っています。それはいいことです。けれど、もし灯台が船を追いかけて港を出てしまったら、それはもう灯台ではありません。お寺も同じで、来ていただく工夫はしても、追いかけた瞬間に、布施の心が営業の匂いに変わってしまう。",
     "tsukkomi": "「灯台まではOK、追いかけたらアウト」。線は、ちゃんとそこに引かれているんですね。",
+    "point": "来てもらう工夫はよし。けれど追いかけた瞬間、布施の心が営業に変わる。",
     "file": "0001_灯台は船を追わない.md"
   },
   {
@@ -41,6 +42,7 @@ window.CARDS = [
     "furi": "「赦す」と「罰する」。正反対の言葉に聞こえます。",
     "ochi": "でも、どちらも「ひとつのことを終わらせる」という働きでは同じなんです。罰を与えて終わらせるのか、赦して終わらせるのか。終わらせ方が違うだけ。",
     "tsukkomi": "いつまでもミスを背負わせ続ける——それは罰でも赦しでもなく、ただ「終わらせない」こと。終わらせない社会は、誰にとってもしんどいのです。",
+    "point": "赦すも罰するも「終わらせる」こと。一番つらいのは、終わらせないこと。",
     "file": "0002_赦すと罰するは同じ.md"
   },
   {
@@ -56,6 +58,7 @@ window.CARDS = [
     "furi": "「お布施って、いくら包めばいいんですか」と、よく聞かれます。",
     "ochi": "値段でお答えすると、布施という\"行\"が、ただの代金に格下げされてしまう。布施はもともと、こちらが何かを手放す——執着をゆるめる修行のほうなんです。受け取る側の値付けではなく、出す側の心のけいこ。",
     "tsukkomi": "「お気持ちで」と言うのは、もったいぶっているのではなく、あなたの修行の場を取り上げないため、なのかもしれません。",
+    "point": "布施は値段ではなく、出す側の心のけいこ。だから「お気持ちで」。",
     "file": "0003_布施は出す人の修行.md"
   },
   {
@@ -71,6 +74,7 @@ window.CARDS = [
     "furi": "困っている人に手を貸して、「いいんですよ、お互いさまですから」と言う。よく耳にする一言です。",
     "ochi": "この「お互いさま」、実は仏教の縁起そのものなんです。すべては互いに支え合って成り立っている。私が今こうしていられるのも、まわりのみなさんのおかげ。",
     "tsukkomi": "「お互いさま」は、貸し借りの計算じゃない。いつか返ってくるから、ではなく、もう最初から繋がっているから、なんですね。",
+    "point": "お互いさまは計算じゃない。もう最初から繋がっている、ということ。",
     "file": "0004_お互いさまは縁起.md"
   },
   {
@@ -86,6 +90,7 @@ window.CARDS = [
     "furi": "大切な人を亡くしたとき、「執着を手放しなさい」と言われると、突き放されたように感じませんか。",
     "ochi": "でも、手放すことと、絆が続くことは、対立しません。握りしめていた「所有」の手をゆるめると、それは「見守り」や「関係」に姿を変えて、続いていく。形を変えて、ちゃんと残るんです。",
     "tsukkomi": "手放すのは、忘れることじゃない。持ち方を、変えることなんですね。",
+    "point": "手放すは忘れることではなく、持ち方を変えること。絆は形を変えて続く。",
     "file": "0005_手放すゆえに続く.md"
   },
   {
@@ -101,6 +106,7 @@ window.CARDS = [
     "furi": "商売がうまくいかない、大事なものを失った——心が、ぐらりと揺れる。",
     "ochi": "仏教では、人を揺さぶる八つの風（八風）を説きます。得と失、誉れと謗り……。面白いのは、経営の悩みも、大切な人を失った悲しみも、根は同じ「失う風」への揺れだということ。",
     "tsukkomi": "風を止めることはできません。でも、風で動かない場所に立てたとき、はじめて、同じ風に揺れている人の隣に座れるんです。",
+    "point": "風は止められない。動じない場所に立てたとき、隣に座れる。",
     "file": "0006_八風吹けども動ぜず.md"
   }
 ];
@@ -142,8 +148,8 @@ window.CARDS_BUILT = "2026-06-11";
   }
   .tag.on{background:var(--brown); color:#fff; border-color:var(--brown)}
 
-  main{flex:1; display:flex; align-items:center; justify-content:center; padding:24px 16px}
-  .stage{width:100%; max-width:680px; display:flex; align-items:center; gap:8px}
+  main{flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px 14px}
+  .stage{width:100%; max-width:900px; display:flex; align-items:flex-start; gap:10px}
 
   .nav{
     flex:0 0 auto; width:44px; height:44px; border-radius:50%;
@@ -156,7 +162,7 @@ window.CARDS_BUILT = "2026-06-11";
   .card{
     flex:1; background:#fff; border:1px solid var(--line);
     border-radius:14px; box-shadow:0 6px 22px rgba(80,60,40,.10);
-    padding:30px 32px 26px; min-height:380px;
+    padding:24px 28px 20px; min-height:0;
     display:flex; flex-direction:column;
     animation:flip .28s ease;
   }
@@ -169,12 +175,19 @@ window.CARDS_BUILT = "2026-06-11";
     font-size:24px; margin:4px 0 18px; color:var(--ink);
     letter-spacing:.04em; line-height:1.4;
   }
-  .seg{margin:0 0 16px; padding-left:14px; border-left:3px solid var(--line)}
-  .seg .lbl{font-size:12.5px; letter-spacing:.1em; font-weight:600; display:block; margin-bottom:4px}
-  .seg p{margin:0; font-size:16px; line-height:1.95}
+  .seg{margin:0 0 13px; padding-left:14px; border-left:3px solid var(--line)}
+  .seg .lbl{font-size:12.5px; letter-spacing:.1em; font-weight:600; display:block; margin-bottom:3px}
+  .seg p{margin:0; font-size:16px; line-height:1.85}
   .seg.furi{border-color:var(--furi)} .seg.furi .lbl{color:var(--furi)}
   .seg.ochi{border-color:var(--ochi)} .seg.ochi .lbl{color:var(--ochi)}
   .seg.tsukkomi{border-color:var(--tsukkomi)} .seg.tsukkomi .lbl{color:var(--tsukkomi)}
+
+  /* ポイント＝この話の芯（4つ目・まとめ枠） */
+  .point{margin:4px 0 6px; padding:13px 16px; background:#f1ebdd;
+    border:1px solid #e3d8c3; border-radius:10px}
+  .point .lbl{font-size:12.5px; letter-spacing:.1em; font-weight:700;
+    color:var(--brown); display:block; margin-bottom:4px}
+  .point p{margin:0; font-size:15.5px; line-height:1.8; color:#3a3127}
 
   .card .foot{
     margin-top:auto; padding-top:14px; border-top:1px dashed var(--line);
@@ -247,7 +260,7 @@ function renderTags(){
 function applyFilter(){
   view = ALL.filter(c => {
     const tagOk = !activeTag || (c.tags||[]).includes(activeTag);
-    const blob = [c.title,c.scene,c.furi,c.ochi,c.tsukkomi,(c.tags||[]).join(" ")].join(" ").toLowerCase();
+    const blob = [c.title,c.scene,c.furi,c.ochi,c.tsukkomi,c.point,(c.tags||[]).join(" ")].join(" ").toLowerCase();
     const qOk = !query || blob.includes(query.toLowerCase());
     return tagOk && qOk;
   });
@@ -279,6 +292,7 @@ function render(){
       seg("furi","ふり",c.furi)+
       seg("ochi","おち",c.ochi)+
       seg("tsukkomi","つっこみ",c.tsukkomi)+
+      (c.point?'<div class="point"><span class="lbl">◆ ポイント（この話の芯）</span><p>'+esc(c.point).replace(/\n/g,"<br>")+'</p></div>':'')+
       '<div class="foot">'+
         '<div class="cardtags">'+tagHtml+'</div>'+
         (c.source?'<div>出典：'+esc(c.source)+'</div>':'')+
