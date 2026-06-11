@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#6b4f3a">
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>考えのあんちょこ</title>
 <script>
 window.CARDS = [
@@ -914,136 +914,124 @@ window.CARDS_BUILT = "2026-06-11";
   :root{
     --paper:#f7f4ec; --ink:#2b2b2b; --sub:#7a6f60;
     --brown:#6b4f3a; --line:#d8cfbe; --accent:#9c6b43;
-    --furi:#3a6b4f; --ochi:#9c6b43; --tsukkomi:#8a5a6b;
+    --furi:#3a6b4f; --ochi:#9c6b43; --tsukkomi:#8a5a6b; --point:#6b4f3a;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
+  html,body{margin:0; height:100%}
   body{
     font-family:"Hiragino Mincho ProN","Hiragino Mincho Pro",serif;
     background:var(--paper); color:var(--ink);
-    display:flex; flex-direction:column; min-height:100vh;
+    display:flex; flex-direction:column; height:100dvh; overflow:hidden;
   }
   header{
-    padding:16px 20px 10px; border-bottom:1px solid var(--line);
-    display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
+    padding:10px 14px 8px; border-bottom:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; flex:0 0 auto;
   }
   header h1{
-    font-size:20px; margin:0; letter-spacing:.08em; color:var(--brown);
+    font-size:18px; margin:0; letter-spacing:.06em; color:var(--brown);
     font-weight:600; white-space:nowrap;
   }
-  header h1 small{font-size:12px;color:var(--sub);font-weight:400;margin-left:8px;letter-spacing:.02em}
+  header h1 small{font-size:11px;color:var(--sub);font-weight:400;margin-left:7px}
   .search{
-    flex:1; min-width:160px; max-width:360px;
-    border:1px solid var(--line); border-radius:20px; padding:6px 14px;
-    font-size:14px; background:#fff; color:var(--ink);
-    font-family:inherit;
+    flex:1; min-width:130px; max-width:300px;
+    border:1px solid var(--line); border-radius:20px; padding:6px 13px;
+    font-size:14px; background:#fff; color:var(--ink); font-family:inherit;
   }
-  .tags{display:flex; flex-wrap:wrap; gap:6px; width:100%}
+  .dice{
+    flex:0 0 auto; border:1px solid var(--line); background:#fff; color:var(--brown);
+    border-radius:20px; padding:6px 12px; font-size:13px; cursor:pointer; font-family:inherit;
+    white-space:nowrap;
+  }
+  .dice:hover{background:var(--brown); color:#fff}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; width:100%; max-height:30px; overflow:hidden}
   .tag{
     font-size:12px; padding:3px 11px; border-radius:14px; cursor:pointer;
-    border:1px solid var(--line); background:#fff; color:var(--sub);
-    font-family:inherit;
+    border:1px solid var(--line); background:#fff; color:var(--sub); font-family:inherit;
+    white-space:nowrap;
   }
   .tag.on{background:var(--brown); color:#fff; border-color:var(--brown)}
 
-  main{flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px 14px}
-  .stage{width:100%; max-width:900px; display:flex; align-items:flex-start; gap:10px}
+  main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:12px 10px; min-height:0}
+  .stage{width:100%; max-width:680px; display:flex; align-items:stretch; gap:8px}
 
   .nav{
-    flex:0 0 auto; width:44px; height:44px; border-radius:50%;
+    flex:0 0 auto; width:42px; align-self:center; height:42px; border-radius:50%;
     border:1px solid var(--line); background:#fff; color:var(--brown);
     font-size:20px; cursor:pointer; line-height:1;
   }
   .nav:hover{background:var(--brown);color:#fff}
-  .nav:disabled{opacity:.3; cursor:default; background:#fff; color:var(--brown)}
+  .nav:disabled{opacity:.25; cursor:default; background:#fff; color:var(--brown)}
 
   .card{
-    flex:1; background:#fff; border:1px solid var(--line);
-    border-radius:14px; box-shadow:0 6px 22px rgba(80,60,40,.10);
-    padding:24px 28px 20px; min-height:0;
-    display:flex; flex-direction:column;
-    animation:flip .28s ease;
+    flex:1; background:#fff; border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 6px 22px rgba(80,60,40,.10);
+    padding:18px 22px 16px; display:flex; flex-direction:column;
+    cursor:pointer; -webkit-tap-highlight-color:transparent; user-select:none;
+    min-height:0; overflow:hidden;
   }
-  @keyframes flip{from{opacity:0; transform:translateY(8px) rotateX(6deg)}to{opacity:1; transform:none}}
+  /* 上：分類と題 */
+  .chead{flex:0 0 auto; border-bottom:1px dashed var(--line); padding-bottom:10px; margin-bottom:8px}
+  .chead .cat{font-size:11.5px; font-weight:600; color:#fff; background:var(--brown); border-radius:11px; padding:2px 11px}
+  .chead h2{font-size:21px; margin:8px 0 0; color:var(--ink); letter-spacing:.03em; line-height:1.35}
 
-  .card .meta{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:6px}
-  .card .cat{font-size:12px; font-weight:600; color:#fff; background:var(--brown); border-radius:11px; padding:2px 11px}
-  .card .scene{font-size:12.5px; color:var(--accent)}
-  .card .dur{font-size:12px; color:var(--sub); border:1px solid var(--line); border-radius:10px; padding:1px 8px}
-  .card h2{
-    font-size:24px; margin:4px 0 18px; color:var(--ink);
-    letter-spacing:.04em; line-height:1.4;
-  }
-  .seg{margin:0 0 13px; padding-left:14px; border-left:3px solid var(--line)}
-  .seg .lbl{font-size:12.5px; letter-spacing:.1em; font-weight:600; display:block; margin-bottom:3px}
-  .seg p{margin:0; font-size:16px; line-height:1.85}
-  .seg.furi{border-color:var(--furi)} .seg.furi .lbl{color:var(--furi)}
-  .seg.ochi{border-color:var(--ochi)} .seg.ochi .lbl{color:var(--ochi)}
-  .seg.tsukkomi{border-color:var(--tsukkomi)} .seg.tsukkomi .lbl{color:var(--tsukkomi)}
+  /* 中：いまの一拍（大きく・中央） */
+  .beat{flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; overflow:auto; padding:6px 2px}
+  .beat .lbl{font-size:13px; letter-spacing:.12em; font-weight:700; margin-bottom:10px}
+  .beat .txt{font-size:19px; line-height:2.0; color:var(--ink)}
+  .beat.furi .lbl{color:var(--furi)} .beat.ochi .lbl{color:var(--ochi)}
+  .beat.tsukkomi .lbl{color:var(--tsukkomi)} .beat.point .lbl{color:var(--point)}
+  .beat.point .txt{background:#f1ebdd; border:1px solid #e3d8c3; border-radius:12px; padding:16px 18px; font-weight:600}
 
-  /* ポイント＝この話の芯（4つ目・まとめ枠） */
-  .point{margin:4px 0 6px; padding:13px 16px; background:#f1ebdd;
-    border:1px solid #e3d8c3; border-radius:10px}
-  .point .lbl{font-size:12.5px; letter-spacing:.1em; font-weight:700;
-    color:var(--brown); display:block; margin-bottom:4px}
-  .point p{margin:0; font-size:15.5px; line-height:1.8; color:#3a3127}
+  /* 下：進み具合とヒント */
+  .cfoot{flex:0 0 auto; border-top:1px dashed var(--line); padding-top:9px; margin-top:8px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .dots{display:flex; gap:6px}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--line)}
+  .dot.on{background:var(--brown)}
+  .ftap{font-size:11.5px; color:var(--sub)}
+  .cnt{font-size:11.5px; color:var(--brown); font-weight:600}
 
-  .card .foot{
-    margin-top:auto; padding-top:14px; border-top:1px dashed var(--line);
-    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    font-size:11.5px; color:var(--sub);
-  }
-  .card .cardtags{display:flex; gap:6px; flex-wrap:wrap}
-  .card .cardtags span{color:var(--accent)}
-
-  footer{
-    text-align:center; padding:12px; font-size:12px; color:var(--sub);
-    border-top:1px solid var(--line);
-  }
-  footer .count{color:var(--brown); font-weight:600}
-  .empty{color:var(--sub); text-align:center; padding:60px 20px; font-size:15px}
-  .hint{font-size:11px;color:var(--sub);margin-top:4px}
+  .empty{flex:1; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sub); font-size:15px; padding:30px}
+  .ghint{flex:0 0 auto; text-align:center; padding:7px 10px 10px; font-size:11px; color:var(--sub)}
 </style>
 </head>
 <body>
 <header>
   <h1>考えのあんちょこ<small>仏教思想と、いろんな視点</small></h1>
   <input class="search" id="search" placeholder="ことばで探す（例：無常）" autocomplete="off">
+  <button class="dice" id="dice" title="ランダムで1枚">🎲 今日の一枚</button>
   <div class="tags" id="tags"></div>
 </header>
 
 <main>
   <div class="stage">
-    <button class="nav" id="prev" title="前へ（←）">‹</button>
-    <div id="slot" style="flex:1"></div>
-    <button class="nav" id="next" title="次へ（→）">›</button>
+    <button class="nav" id="prev" title="前の札（←）">‹</button>
+    <div id="slot" style="flex:1; display:flex"></div>
+    <button class="nav" id="next" title="次の札（→）">›</button>
   </div>
 </main>
-
-<footer>
-  <span id="counter"></span>
-  <div class="hint">← → キーでめくれます　／　ネタを足したら build.py を一度実行</div>
-</footer>
+<div class="ghint">タップで続きをめくる　／　左右スワイプ（← →）で次の札　／　🎲で今日の一枚</div>
 
 <script>
 const ALL = window.CARDS || [];
-const BUILT = window.CARDS_BUILT || "";
 let view = ALL.slice();
-let idx = 0;
+let idx = 0;     // 何枚目（view内）
+let beat = 0;    // その札の何拍目
 let activeCat = null;
 let query = "";
 
 const slot = document.getElementById("slot");
-const counter = document.getElementById("counter");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
+
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function nl(s){return esc(s).replace(/\n/g,"<br>");}
 
 function allCats(){
   const s = new Set();
   ALL.forEach(c => { if(c.category) s.add(c.category); });
   return [...s];
 }
-
 function renderTags(){
   const box = document.getElementById("tags");
   box.innerHTML = "";
@@ -1056,83 +1044,106 @@ function renderTags(){
   });
 }
 
-function applyFilter(){
-  view = ALL.filter(c => {
-    const tagOk = !activeCat || c.category===activeCat;
-    const blob = [c.title,c.scene,c.category,c.furi,c.ochi,c.tsukkomi,c.point,(c.topics||[]).join(" ")].join(" ").toLowerCase();
-    const qOk = !query || blob.includes(query.toLowerCase());
-    return tagOk && qOk;
-  });
-  idx = 0;
-  renderTags();
-  render();
+// その札の「拍」配列（空欄は飛ばす）
+function beatsOf(c){
+  const b = [];
+  if(c.furi)     b.push({cls:"furi",     lbl:"ふり",        txt:c.furi});
+  if(c.ochi)     b.push({cls:"ochi",     lbl:"おち",        txt:c.ochi});
+  if(c.tsukkomi) b.push({cls:"tsukkomi", lbl:"つっこみ",    txt:c.tsukkomi});
+  if(c.point)    b.push({cls:"point",    lbl:"◆ ポイント",  txt:c.point});
+  return b.length ? b : [{cls:"furi",lbl:"",txt:"（中身がまだありません）"}];
 }
-
-function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function render(){
   if(!view.length){
-    slot.innerHTML = '<div class="empty">そのことばのネタは、まだありません。<br>別のことばで探すか、新しいカードを足してみてください。</div>';
-    counter.textContent = "";
+    slot.innerHTML = '<div class="card"><div class="empty">そのことばの札は、まだありません。<br>別のことばで探すか、🎲を押してみてください。</div></div>';
     prevBtn.disabled = nextBtn.disabled = true;
     return;
   }
-  if(idx<0) idx=0;
-  if(idx>=view.length) idx=view.length-1;
+  if(idx<0) idx=0; if(idx>=view.length) idx=view.length-1;
   const c = view[idx];
-  const tagHtml = (c.topics||[]).map(t=>'<span>#'+esc(t)+'</span>').join(" ");
+  const bs = beatsOf(c);
+  if(beat<0) beat=0; if(beat>=bs.length) beat=bs.length-1;
+  const cur = bs[beat];
+  const last = beat>=bs.length-1;
+
+  const dots = bs.map((_,i)=>'<span class="dot'+(i<=beat?' on':'')+'"></span>').join("");
+  const tap = last ? "タップで次の札へ ›" : "タップで続き ▾";
+
   slot.innerHTML =
-    '<div class="card">'+
-      '<div class="meta">'+
+    '<div class="card" id="card">'+
+      '<div class="chead">'+
         (c.category?'<span class="cat">'+esc(c.category)+'</span>':'')+
-        (c.scene?'<span class="scene">🗣 '+esc(c.scene)+'</span>':'')+
-        (c.duration?'<span class="dur">'+esc(c.duration)+'</span>':'')+
+        '<h2>'+esc(c.title)+'</h2>'+
       '</div>'+
-      '<h2>'+esc(c.title)+'</h2>'+
-      seg("furi","ふり",c.furi)+
-      seg("ochi","おち",c.ochi)+
-      seg("tsukkomi","つっこみ",c.tsukkomi)+
-      (c.point?'<div class="point"><span class="lbl">◆ ポイント（この話の芯）</span><p>'+esc(c.point).replace(/\n/g,"<br>")+'</p></div>':'')+
-      '<div class="foot">'+
-        '<div class="cardtags">'+tagHtml+'</div>'+
-        (c.source?'<div>出典：'+esc(c.source)+'</div>':'')+
+      '<div class="beat '+cur.cls+'">'+
+        (cur.lbl?'<div class="lbl">'+esc(cur.lbl)+'</div>':'')+
+        '<div class="txt">'+nl(cur.txt)+'</div>'+
+      '</div>'+
+      '<div class="cfoot">'+
+        '<div class="dots">'+dots+'</div>'+
+        '<div class="ftap">'+tap+'</div>'+
+        '<div class="cnt">'+(idx+1)+' / '+view.length+'</div>'+
       '</div>'+
     '</div>';
-  counter.innerHTML = '<span class="count">'+(idx+1)+'</span> / '+view.length+' 枚'+
-    (BUILT?'　（更新 '+BUILT+'）':'');
-  prevBtn.disabled = idx<=0;
-  nextBtn.disabled = idx>=view.length-1;
+
+  document.getElementById("card").addEventListener("click", onTap);
+  prevBtn.disabled = (idx<=0 && beat<=0);
+  nextBtn.disabled = (idx>=view.length-1);
 }
 
-function seg(cls,label,txt){
-  if(!txt) return "";
-  return '<div class="seg '+cls+'"><span class="lbl">'+label+'</span><p>'+esc(txt).replace(/\n/g,"<br>")+'</p></div>';
+// タップ＝次の拍。最後の拍なら次の札へ。
+function onTap(){
+  const c = view[idx];
+  const bs = beatsOf(c);
+  if(beat < bs.length-1){ beat++; }
+  else if(idx < view.length-1){ idx++; beat=0; }
+  render();
 }
+function nextCard(){ if(idx<view.length-1){ idx++; beat=0; render(); } }
+function prevCard(){ if(beat>0){ beat=0; render(); } else if(idx>0){ idx--; beat=0; render(); } }
+function randomCard(){ if(view.length){ idx=Math.floor(Math.random()*view.length); beat=0; render(); } }
 
-function go(d){ idx+=d; render(); }
-
-prevBtn.onclick=()=>go(-1);
-nextBtn.onclick=()=>go(1);
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowLeft") go(-1);
-  if(e.key==="ArrowRight") go(1);
-});
-document.getElementById("search").addEventListener("input",e=>{query=e.target.value;applyFilter();});
-
-// swipe
-let sx=null;
-document.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;},{passive:true});
-document.addEventListener("touchend",e=>{
-  if(sx===null) return;
-  const dx=e.changedTouches[0].clientX-sx;
-  if(Math.abs(dx)>50) go(dx<0?1:-1);
-  sx=null;
-},{passive:true});
-
-if(!ALL.length){
-  slot.innerHTML='<div class="empty">カードがまだ読み込めていません。<br>このフォルダで <b>python3 build.py</b> を一度実行してください。</div>';
-}else{
+function applyFilter(){
+  view = ALL.filter(c => {
+    const catOk = !activeCat || c.category===activeCat;
+    const blob = [c.title,c.scene,c.category,c.furi,c.ochi,c.tsukkomi,c.point,(c.topics||[]).join(" ")].join(" ").toLowerCase();
+    const qOk = !query || blob.includes(query.toLowerCase());
+    return catOk && qOk;
+  });
+  idx = 0; beat = 0;
   renderTags(); render();
+}
+
+prevBtn.onclick = prevCard;
+nextBtn.onclick = nextCard;
+document.getElementById("dice").onclick = randomCard;
+document.getElementById("search").addEventListener("input", e=>{ query=e.target.value; applyFilter(); });
+document.addEventListener("keydown", e=>{
+  if(e.key==="ArrowRight") nextCard();
+  else if(e.key==="ArrowLeft") prevCard();
+  else if(e.key===" "||e.key==="ArrowDown"||e.key==="Enter"){ e.preventDefault(); onTap(); }
+});
+
+// スワイプ（左右で札を移動）。スワイプ時はタップ扱いしない。
+let sx=null, sy=null, swiped=false;
+document.addEventListener("touchstart", e=>{ sx=e.touches[0].clientX; sy=e.touches[0].clientY; swiped=false; }, {passive:true});
+document.addEventListener("touchend", e=>{
+  if(sx===null) return;
+  const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){ swiped=true; if(dx<0) nextCard(); else prevCard(); }
+  sx=sy=null;
+}, {passive:true});
+// スワイプ直後のクリックを無効化
+document.addEventListener("click", e=>{ if(swiped){ swiped=false; e.stopPropagation(); } }, true);
+
+// 起動：renderタグ→「今日の一枚」でランダムスタート
+if(!ALL.length){
+  slot.innerHTML='<div class="card"><div class="empty">カードがまだ読み込めていません。<br>このフォルダで <b>python3 build.py</b> を一度実行してください。</div></div>';
+}else{
+  renderTags();
+  idx = Math.floor(Math.random()*view.length); beat = 0;  // 開くたびに今日の一枚
+  render();
 }
 </script>
 </body>
