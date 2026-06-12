@@ -977,6 +977,23 @@ window.CARDS = [
     "kizuki": "反応を遅らせるのは、にぶいのではありません。一拍おける人は、出来事に飲み込まれず、自分の側にとどまっていられる人です。",
     "hitokoto": "見てから動くまでの、ひと呼吸。そこに、あなたの落ち着きが宿ります。",
     "file": "0056_見る前にひと呼吸.md"
+  },
+  {
+    "title": "悲しみは、",
+    "category": "かなしみ・グリーフ",
+    "scene": "「いつまで悲しんでいるのか」と自分を責めてしまうとき",
+    "duration": "2分",
+    "source": "2026-06-12 賢人会議（降りられない／欠けた一行）",
+    "topics": [
+      "悲しみ",
+      "余白",
+      "閉じてよい"
+    ],
+    "toi": "「いつまでも泣いていては、いけないのかな」。\nふと、そんなふうに自分を責めてしまうこと、ありませんか。",
+    "mikata": "深く悲しめるのは、それだけ深く大切に思ってきた、ということ。\n——その先は、私が言い切らない方がいい気がしています。",
+    "kizuki": "悲しみは、",
+    "hitokoto": "今日はここで、そっと戸を閉めてくださって構いません。\nまた、めくりたくなった時に。",
+    "file": "0057_悲しみは.md"
   }
 ];
 window.CARDS_BUILT = "2026-06-12";
@@ -1085,9 +1102,40 @@ window.CARDS_BUILT = "2026-06-12";
 
   .empty{flex:1; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sub); font-size:15px; padding:30px}
   .ghint{flex:0 0 auto; text-align:center; padding:7px 10px 10px; font-size:11px; color:var(--sub)}
+
+  /* ようこそ（戸口）画面 */
+  #welcome{position:fixed; inset:0; z-index:9999; background:var(--paper); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; padding:32px 24px; overflow:auto;
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;}
+  #welcome .w-inner{width:100%; max-width:360px; text-align:center; display:flex; flex-direction:column; align-items:center}
+  #welcome .w-logo{width:200px; height:200px; filter:drop-shadow(0 8px 16px rgba(107,79,58,.18))}
+  #welcome .w-title{font-size:29px; letter-spacing:.08em; color:var(--brown); font-weight:700; line-height:1.4; margin-top:6px}
+  #welcome .w-sub{font-size:14px; color:var(--sub); letter-spacing:.06em; margin-top:10px}
+  #welcome .w-rule{width:48px; height:1px; background:var(--line); margin:24px 0 20px}
+  #welcome .w-guide{font-size:14.5px; line-height:2.1; letter-spacing:.02em}
+  #welcome .w-leave{color:var(--accent)}
+  #welcome .w-start{margin-top:32px; background:var(--brown); color:#fff; font-family:inherit; font-size:17px;
+    letter-spacing:.18em; border:none; border-radius:30px; padding:15px 52px;
+    box-shadow:0 6px 14px rgba(107,79,58,.25); cursor:pointer}
+  #welcome .w-foot{margin-top:20px; font-size:11px; color:var(--sub); letter-spacing:.08em}
 </style>
 </head>
 <body>
+<div id="welcome">
+  <div class="w-inner">
+    <img class="w-logo" src="kobutta.png" alt="こぶったちゃん">
+    <h1 class="w-title">「こぶった」の<br>ひきだし</h1>
+    <div class="w-sub">仏教の知恵と、いろんな視点を、一枚ずつ。</div>
+    <div class="w-rule"></div>
+    <div class="w-guide">
+      タップで続きをめくる／左右で次の札へ<br>
+      順番はありません。気の向いた一枚をどうぞ<br>
+      <span class="w-leave">「これは自分のことではない」と<br>閉じてくださって構いません</span>
+    </div>
+    <button class="w-start" onclick="document.getElementById('welcome').style.display='none'">よ う こ そ</button>
+    <div class="w-foot">佛心寺（こぶったちゃん）</div>
+  </div>
+</div>
 <div class="brandbar">
   <span class="bn">佛心寺（こぶったちゃん）</span>
   <span>© 2026 新田崇信　<a href="https://busshinji.net" target="_blank" rel="noopener">busshinji.net</a></span>
