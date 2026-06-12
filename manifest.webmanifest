@@ -1,0 +1,14 @@
+{
+  "name": "見方のひきだし",
+  "short_name": "見方のひきだし",
+  "description": "仏教思想と、いろんな視点。ものの見方を1枚ずつ、パラパラめくって。佛心寺",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#6b4f3a",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

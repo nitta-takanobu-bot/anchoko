@@ -11,6 +11,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>見方のひきだし</title>
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
 <script>
 window.CARDS = [
   {
@@ -940,6 +943,9 @@ window.CARDS_BUILT = "2026-06-12";
     font-weight:600; white-space:nowrap;
   }
   header h1 small{font-size:11px;color:var(--sub);font-weight:400;margin-left:7px}
+  .titlewrap{display:flex; align-items:center; gap:9px; width:100%}
+  .logo{flex:0 0 auto; line-height:0}
+  .logo svg{width:32px; height:32px; display:block}
   .search{
     flex:1; min-width:130px; max-width:300px;
     border:1px solid var(--line); border-radius:20px; padding:6px 13px;
@@ -1018,7 +1024,20 @@ window.CARDS_BUILT = "2026-06-12";
   <span>© 2026 新田崇信　<a href="https://busshinji.net" target="_blank" rel="noopener">busshinji.net</a></span>
 </div>
 <header>
-  <h1>見方のひきだし<small>仏教思想と、いろんな視点</small></h1>
+  <div class="titlewrap">
+    <span class="logo"><svg viewBox="0 0 512 512" width="32" height="32" aria-hidden="true">
+      <rect width="512" height="512" rx="120" fill="#6b4f3a"/>
+      <circle cx="256" cy="244" r="168" fill="#f7f4ec"/>
+      <clipPath id="lc"><circle cx="256" cy="244" r="168"/></clipPath>
+      <g clip-path="url(#lc)">
+        <circle cx="330" cy="178" r="42" fill="#e7c98f"/>
+        <path d="M80 300 Q205 226 330 282 T432 300 V420 H80 Z" fill="#9cb7a0"/>
+        <path d="M80 352 Q235 286 432 356 V420 H80 Z" fill="#7a9c81"/>
+      </g>
+      <circle cx="256" cy="244" r="168" fill="none" stroke="#6b4f3a" stroke-width="14"/>
+    </svg></span>
+    <h1>見方のひきだし<small>仏教思想と、いろんな視点</small></h1>
+  </div>
   <input class="search" id="search" placeholder="ことばで探す（例：無常）" autocomplete="off">
   <button class="dice" id="dice" title="ランダムで1枚">🎲 今日の一枚</button>
   <div class="tags" id="tags"></div>
