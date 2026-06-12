@@ -939,13 +939,15 @@ window.CARDS_BUILT = "2026-06-12";
     white-space:nowrap;
   }
   .dice:hover{background:var(--brown); color:#fff}
-  .tags{display:flex; flex-wrap:wrap; gap:6px; width:100%}
+  .tags{display:flex; flex-wrap:wrap; gap:5px; width:100%}
   .tag{
-    font-size:12px; padding:3px 11px; border-radius:14px; cursor:pointer;
+    font-size:11px; padding:3px 9px; border-radius:13px; cursor:pointer;
     border:1px solid var(--line); background:#fff; color:var(--sub); font-family:inherit;
     white-space:nowrap;
   }
   .tag.on{background:var(--brown); color:#fff; border-color:var(--brown)}
+  .tag.dicechip{color:var(--brown); border-color:var(--brown); font-weight:600}
+  .tag.dicechip:hover{background:var(--brown); color:#fff}
 
   main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:6px 10px 2px; min-height:0}
   .stage{width:100%; max-width:680px; display:flex}
@@ -1047,7 +1049,6 @@ window.CARDS_BUILT = "2026-06-12";
     <span class="logo"><img src="kobutta.png" alt="こぶったちゃん"></span>
     <h1>「こぶった」のひきだし<small>仏教思想と、いろんな視点</small></h1>
   </div>
-  <button class="dice" id="dice" title="ランダムで1枚">🎲 今日の一枚</button>
   <div class="tags" id="tags"></div>
 </header>
 
@@ -1091,13 +1092,25 @@ function allCats(){
   return ordered;
 }
 function catCount(t){ return ALL.filter(c => c.category===t).length; }
+// チップ表示用の短い名前（フィルタは正式名のまま）
+const SHORT_LABEL = {
+  "かなしみ・グリーフ":"グリーフ", "いのち・生死":"いのち", "ご縁・人とのあいだ":"ご縁",
+  "仏教思想（ものの見方）":"仏教の見方", "暮らし・はたらき":"暮らし",
+  "科学・別の視点":"科学", "お寺のかたち":"お寺"
+};
 function renderTags(){
   const box = document.getElementById("tags");
   box.innerHTML = "";
+  // 先頭に「今日の一枚」（ランダム）をチップとして置く
+  const dice = document.createElement("span");
+  dice.className = "tag dicechip";
+  dice.textContent = "🎲 今日の一枚";
+  dice.onclick = randomCard;
+  box.appendChild(dice);
   allCats().forEach(t => {
     const el = document.createElement("span");
     el.className = "tag" + (activeCat===t ? " on":"");
-    el.textContent = t + " " + catCount(t);
+    el.textContent = (SHORT_LABEL[t]||t) + " " + catCount(t);
     el.onclick = () => { activeCat = (activeCat===t)?null:t; applyFilter(); };
     box.appendChild(el);
   });
@@ -1181,7 +1194,6 @@ function applyFilter(){
 prevBtn.onclick = prevCard;
 nextBtn.onclick = nextCard;
 document.getElementById("tapbtn").onclick = onTap;
-document.getElementById("dice").onclick = randomCard;
 document.addEventListener("keydown", e=>{
   if(e.key==="ArrowRight") nextCard();
   else if(e.key==="ArrowLeft") prevCard();
