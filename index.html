@@ -908,7 +908,7 @@ window.CARDS = [
     "file": "0052_今ここにいる.md"
   }
 ];
-window.CARDS_BUILT = "2026-06-11";
+window.CARDS_BUILT = "2026-06-12";
 </script>
 <style>
   :root{
@@ -951,16 +951,18 @@ window.CARDS_BUILT = "2026-06-11";
   }
   .tag.on{background:var(--brown); color:#fff; border-color:var(--brown)}
 
-  main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:12px 10px; min-height:0}
-  .stage{width:100%; max-width:680px; display:flex; align-items:stretch; gap:8px}
+  main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:10px 10px 4px; min-height:0}
+  .stage{width:100%; max-width:680px; display:flex}
 
-  .nav{
-    flex:0 0 auto; width:48px; align-self:center; height:48px; border-radius:50%;
+  /* 下の操作バー（前・めくる・次）＝親指の届く位置に集約 */
+  .controls{flex:0 0 auto; width:100%; max-width:680px; margin:0 auto; display:flex; gap:9px; align-items:stretch; padding:4px 12px 8px}
+  .navb{
+    flex:0 0 auto; width:58px; border-radius:13px;
     border:1px solid var(--line); background:#fff; color:var(--brown);
-    font-size:23px; cursor:pointer; line-height:1;
+    font-size:25px; cursor:pointer; line-height:1;
   }
-  .nav:hover{background:var(--brown);color:#fff}
-  .nav:disabled{opacity:.25; cursor:default; background:#fff; color:var(--brown)}
+  .navb:hover{background:var(--brown); color:#fff}
+  .navb:disabled{opacity:.25; cursor:default; background:#fff; color:var(--brown)}
 
   .card{
     flex:1; background:#fff; border:1px solid var(--line); border-radius:16px;
@@ -975,7 +977,7 @@ window.CARDS_BUILT = "2026-06-11";
   .chead h2{font-size:21px; margin:8px 0 0; color:var(--ink); letter-spacing:.03em; line-height:1.35}
 
   /* 中：いまの一拍（大きく・中央） */
-  .beat{flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; overflow:auto; padding:6px 2px}
+  .beat{flex:1; display:flex; flex-direction:column; justify-content:flex-start; min-height:0; overflow:auto; padding:14px 2px 6px}
   .beat .lbl{font-size:13px; letter-spacing:.12em; font-weight:700; margin-bottom:10px}
   .beat .txt{font-size:19px; line-height:2.0; color:var(--ink)}
   .beat.toi .lbl{color:var(--toi)} .beat.mikata .lbl{color:var(--mikata)}
@@ -983,18 +985,18 @@ window.CARDS_BUILT = "2026-06-11";
   .beat.hitokoto .txt{background:#f1ebdd; border:1px solid #e3d8c3; border-radius:12px; padding:16px 18px; font-weight:600}
 
   /* 下：進み具合とヒント */
-  .cfoot{flex:0 0 auto; border-top:1px dashed var(--line); padding-top:9px; margin-top:8px}
-  .cfrow{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:9px}
+  .cfoot{flex:0 0 auto; border-top:1px dashed var(--line); padding-top:9px; margin-top:8px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px}
   .dots{display:flex; gap:6px}
   .dot{width:8px; height:8px; border-radius:50%; background:var(--line)}
   .dot.on{background:var(--brown)}
   .cnt{font-size:11.5px; color:var(--brown); font-weight:600}
-  /* 大きな めくるボタン */
+  /* 大きな めくるボタン（下の操作バー中央） */
   .tapbtn{
-    width:100%; padding:15px 14px; border-radius:13px;
+    flex:1; padding:15px 14px; border-radius:13px;
     background:var(--brown); color:#fff; text-align:center;
     font-size:17px; font-weight:600; letter-spacing:.04em;
-    box-shadow:0 3px 10px rgba(80,60,40,.18);
+    box-shadow:0 3px 10px rgba(80,60,40,.18); cursor:pointer; user-select:none;
   }
   .tapbtn.last{background:var(--accent)}
 
@@ -1012,12 +1014,15 @@ window.CARDS_BUILT = "2026-06-11";
 
 <main>
   <div class="stage">
-    <button class="nav" id="prev" title="前の札（←）">‹</button>
     <div id="slot" style="flex:1; display:flex"></div>
-    <button class="nav" id="next" title="次の札（→）">›</button>
   </div>
 </main>
-<div class="ghint">タップで続きをめくる　／　左右スワイプ（← →）で次の札　／　🎲で今日の一枚</div>
+<div class="controls">
+  <button class="navb" id="prev" title="前の札（←）">‹</button>
+  <div class="tapbtn" id="tapbtn">▾ つづきをめくる</div>
+  <button class="navb" id="next" title="次の札（→）">›</button>
+</div>
+<div class="ghint">中央ボタンで続き　・　◀ ▶ で次の札　・　🎲で今日の一枚</div>
 
 <script>
 const ALL = window.CARDS || [];
@@ -1089,15 +1094,15 @@ function render(){
         '<div class="txt">'+nl(cur.txt)+'</div>'+
       '</div>'+
       '<div class="cfoot">'+
-        '<div class="cfrow">'+
-          '<div class="dots">'+dots+'</div>'+
-          '<div class="cnt">'+(idx+1)+' / '+view.length+'</div>'+
-        '</div>'+
-        '<div class="tapbtn'+(last?' last':'')+'">'+tapLabel+'</div>'+
+        '<div class="dots">'+dots+'</div>'+
+        '<div class="cnt">'+(idx+1)+' / '+view.length+'</div>'+
       '</div>'+
     '</div>';
 
   document.getElementById("card").addEventListener("click", onTap);
+  const tb = document.getElementById("tapbtn");
+  tb.textContent = tapLabel;
+  tb.classList.toggle("last", last);
   prevBtn.disabled = (idx<=0 && beat<=0);
   nextBtn.disabled = (idx>=view.length-1);
 }
@@ -1128,6 +1133,7 @@ function applyFilter(){
 
 prevBtn.onclick = prevCard;
 nextBtn.onclick = nextCard;
+document.getElementById("tapbtn").onclick = onTap;
 document.getElementById("dice").onclick = randomCard;
 document.getElementById("search").addEventListener("input", e=>{ query=e.target.value; applyFilter(); });
 document.addEventListener("keydown", e=>{
