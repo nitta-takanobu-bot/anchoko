@@ -986,14 +986,22 @@ window.CARDS_BUILT = "2026-06-12";
   .bubblewrap{display:grid; grid-template-columns:60px minmax(0,1fr); gap:9px; align-items:start; width:100%; padding-top:4px}
   .bubblewrap .kobu{width:60px; height:60px; object-fit:contain; margin-top:8px}
   .bubble{position:relative; min-width:0; overflow-wrap:anywhere;
-    background:#f1ebdd; border:1px solid #e3d8c3;
-    border-radius:15px; padding:15px 18px; font-size:18.5px; line-height:1.7; font-weight:600; color:var(--ink)}
+    border:1px solid #e3d8c3; border-radius:15px; padding:15px 18px;
+    font-size:18.5px; line-height:1.7; color:var(--ink); background:#f1ebdd}
   .bubble::before{content:""; position:absolute; left:-9px; top:20px;
     border-width:8px 9px 8px 0; border-style:solid;
     border-color:transparent #e3d8c3 transparent transparent}
   .bubble::after{content:""; position:absolute; left:-7px; top:21px;
     border-width:7px 8px 7px 0; border-style:solid;
     border-color:transparent #f1ebdd transparent transparent}
+  /* ひとこと＝こぶったが締める（濃いめ・太字） */
+  .beat.hitokoto .bubble{background:#f1ebdd; border-color:#e3d8c3; font-weight:600}
+  .beat.hitokoto .bubble::before{border-right-color:#e3d8c3}
+  .beat.hitokoto .bubble::after{border-right-color:#f1ebdd}
+  /* 問い＝こぶったが問いかける（淡く・ふつうの太さ） */
+  .beat.toi .bubble{background:#fff; border-color:#e6ddcb; font-weight:400}
+  .beat.toi .bubble::before{border-right-color:#e6ddcb}
+  .beat.toi .bubble::after{border-right-color:#fff}
 
   /* 下：進み具合とヒント */
   .cfoot{flex:0 0 auto; border-top:1px dashed var(--line); padding-top:9px; margin-top:8px;
@@ -1163,7 +1171,7 @@ function render(){
         '<h2>'+esc(c.title)+'</h2>'+
       '</div>'+
       '<div class="beat '+cur.cls+'">'+
-        ( cur.cls==="hitokoto"
+        ( (cur.cls==="hitokoto" || cur.cls==="toi")
           ? '<div class="bubblewrap">'+
               '<img class="kobu" src="kobutta.png" alt="こぶったちゃん">'+
               '<div class="bubble">'+nl(cur.txt)+'</div>'+
