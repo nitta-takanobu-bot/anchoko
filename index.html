@@ -1066,7 +1066,15 @@ window.CARDS_BUILT = "2026-06-12";
   #welcome .w-start{margin-top:32px; background:var(--brown); color:#fff; font-family:inherit; font-size:17px;
     letter-spacing:.18em; border:none; border-radius:30px; padding:15px 52px;
     box-shadow:0 6px 14px rgba(107,79,58,.25); cursor:pointer}
-  #welcome .w-foot{margin-top:20px; font-size:11px; color:var(--sub); letter-spacing:.08em}
+  #welcome .w-pick{font-size:13px; color:var(--sub); margin-top:26px; letter-spacing:.08em}
+  #welcome .w-doors{display:flex; flex-wrap:wrap; gap:9px; justify-content:center; margin-top:14px}
+  #welcome .w-door{font-family:inherit; font-size:15px; color:var(--brown); background:#fff;
+    border:1px solid var(--line); border-radius:22px; padding:10px 20px; cursor:pointer}
+  #welcome .w-door:active{background:var(--brown); color:#fff}
+  #welcome .w-omakase{margin-top:22px; background:var(--brown); color:#fff; font-family:inherit;
+    font-size:15px; letter-spacing:.12em; border:none; border-radius:30px; padding:13px 40px;
+    box-shadow:0 6px 14px rgba(107,79,58,.25); cursor:pointer}
+  #welcome .w-foot{margin-top:22px; font-size:11px; color:var(--sub); letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -1077,10 +1085,16 @@ window.CARDS_BUILT = "2026-06-12";
     <div class="w-sub">仏教の知恵と、いろんな視点を、一枚ずつ。</div>
     <div class="w-rule"></div>
     <div class="w-guide">
-      タップで続きをめくる／左右で次の札へ<br>
-      順番はありません。気の向いた一枚をどうぞ
+      タップでめくり、左右で次の札へ。
     </div>
-    <button class="w-start" onclick="document.getElementById('welcome').style.display='none'">よ う こ そ</button>
+    <div class="w-pick">どこから、ひらきますか？</div>
+    <div class="w-doors">
+      <button class="w-door" onclick="enter('かなしみ・グリーフ')">かなしみ</button>
+      <button class="w-door" onclick="enter('いのち・生死')">いのち</button>
+      <button class="w-door" onclick="enter('ご縁・人とのあいだ')">ご縁</button>
+      <button class="w-door" onclick="enter('仏教思想（ものの見方）')">仏教の見方</button>
+    </div>
+    <button class="w-omakase" onclick="enter()">おまかせで一枚</button>
     <div class="w-foot">佛心寺（こぶったちゃん）</div>
   </div>
 </div>
@@ -1213,6 +1227,18 @@ function onTap(){
 function nextCard(){ if(idx<view.length-1){ idx++; beat=0; render(); } }
 function prevCard(){ if(beat>0){ beat=0; render(); } else if(idx>0){ idx--; beat=0; render(); } }
 function randomCard(){ if(view.length){ idx=Math.floor(Math.random()*view.length); beat=0; render(); } }
+
+// 戸口の入口ボタン：カテゴリを選んで（無指定はおまかせ）中へ入る
+function enter(cat){
+  activeCat = cat || null;
+  query = "";
+  const sb = document.getElementById("search");
+  if(sb) sb.value = "";
+  applyFilter();
+  randomCard();
+  const w = document.getElementById("welcome");
+  if(w) w.style.display = "none";
+}
 
 function applyFilter(){
   view = ALL.filter(c => {
