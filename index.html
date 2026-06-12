@@ -923,6 +923,14 @@ window.CARDS_BUILT = "2026-06-12";
     background:var(--paper); color:var(--ink);
     display:flex; flex-direction:column; height:100dvh; overflow:hidden;
   }
+  .brandbar{
+    flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:5px 14px; background:#efe9dc; border-bottom:1px solid var(--line);
+    font-size:11px; color:var(--sub);
+  }
+  .brandbar .bn{font-weight:700; color:var(--brown); letter-spacing:.1em}
+  .brandbar a{color:var(--sub); text-decoration:none}
+  .brandbar a:hover{color:var(--brown)}
   header{
     padding:10px 14px 8px; border-bottom:1px solid var(--line);
     display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; flex:0 0 auto;
@@ -1005,6 +1013,10 @@ window.CARDS_BUILT = "2026-06-12";
 </style>
 </head>
 <body>
+<div class="brandbar">
+  <span class="bn">佛心寺</span>
+  <span>© 2026 新田崇信　<a href="https://busshinji.net" target="_blank" rel="noopener">busshinji.net</a></span>
+</div>
 <header>
   <h1>見方のひきだし<small>仏教思想と、いろんな視点</small></h1>
   <input class="search" id="search" placeholder="ことばで探す（例：無常）" autocomplete="off">
