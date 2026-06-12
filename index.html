@@ -967,7 +967,7 @@ window.CARDS_BUILT = "2026-06-12";
     box-shadow:0 6px 22px rgba(80,60,40,.10);
     padding:13px 20px 12px; display:flex; flex-direction:column;
     cursor:pointer; -webkit-tap-highlight-color:transparent; user-select:none;
-    min-height:0; overflow:hidden;
+    min-height:0; min-width:0; overflow:hidden;
   }
   /* 上：分類と題 */
   .chead{flex:0 0 auto; border-bottom:1px dashed var(--line); padding-bottom:7px; margin-bottom:5px}
@@ -981,6 +981,19 @@ window.CARDS_BUILT = "2026-06-12";
   .beat.toi .lbl{color:var(--toi)} .beat.mikata .lbl{color:var(--mikata)}
   .beat.kizuki .lbl{color:var(--kizuki)} .beat.hitokoto .lbl{color:var(--hitokoto)}
   .beat.hitokoto .txt{background:#f1ebdd; border:1px solid #e3d8c3; border-radius:12px; padding:16px 18px; font-weight:600}
+  /* ひとこと＝こぶったちゃんの吹き出し */
+  .beat.hitokoto{justify-content:center}
+  .bubblewrap{display:grid; grid-template-columns:60px minmax(0,1fr); gap:9px; align-items:start; width:100%; padding-top:4px}
+  .bubblewrap .kobu{width:60px; height:60px; object-fit:contain; margin-top:8px}
+  .bubble{position:relative; min-width:0; overflow-wrap:anywhere;
+    background:#f1ebdd; border:1px solid #e3d8c3;
+    border-radius:15px; padding:15px 18px; font-size:18.5px; line-height:1.7; font-weight:600; color:var(--ink)}
+  .bubble::before{content:""; position:absolute; left:-9px; top:20px;
+    border-width:8px 9px 8px 0; border-style:solid;
+    border-color:transparent #e3d8c3 transparent transparent}
+  .bubble::after{content:""; position:absolute; left:-7px; top:21px;
+    border-width:7px 8px 7px 0; border-style:solid;
+    border-color:transparent #f1ebdd transparent transparent}
 
   /* 下：進み具合とヒント */
   .cfoot{flex:0 0 auto; border-top:1px dashed var(--line); padding-top:9px; margin-top:8px;
@@ -1150,8 +1163,14 @@ function render(){
         '<h2>'+esc(c.title)+'</h2>'+
       '</div>'+
       '<div class="beat '+cur.cls+'">'+
-        (cur.lbl?'<div class="lbl">'+esc(cur.lbl)+'</div>':'')+
-        '<div class="txt">'+nl(cur.txt)+'</div>'+
+        ( cur.cls==="hitokoto"
+          ? '<div class="bubblewrap">'+
+              '<img class="kobu" src="kobutta.png" alt="こぶったちゃん">'+
+              '<div class="bubble">'+nl(cur.txt)+'</div>'+
+            '</div>'
+          : (cur.lbl?'<div class="lbl">'+esc(cur.lbl)+'</div>':'')+
+            '<div class="txt">'+nl(cur.txt)+'</div>'
+        )+
       '</div>'+
       '<div class="cfoot">'+
         '<div class="dots">'+dots+'</div>'+
