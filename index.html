@@ -916,8 +916,8 @@ window.CARDS_BUILT = "2026-06-12";
   .brandbar a{color:var(--sub); text-decoration:none}
   .brandbar a:hover{color:var(--brown)}
   header{
-    padding:10px 14px 8px; border-bottom:1px solid var(--line);
-    display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; flex:0 0 auto;
+    padding:7px 14px 6px; border-bottom:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; flex:0 0 auto;
   }
   header h1{
     font-size:18px; margin:0; letter-spacing:.06em; color:var(--brown);
@@ -947,7 +947,7 @@ window.CARDS_BUILT = "2026-06-12";
   }
   .tag.on{background:var(--brown); color:#fff; border-color:var(--brown)}
 
-  main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:10px 10px 4px; min-height:0}
+  main{flex:1; display:flex; align-items:stretch; justify-content:center; padding:6px 10px 2px; min-height:0}
   .stage{width:100%; max-width:680px; display:flex}
 
   /* 下の操作バー（前・めくる・次）＝親指の届く位置に集約 */
@@ -963,19 +963,19 @@ window.CARDS_BUILT = "2026-06-12";
   .card{
     flex:1; background:#fff; border:1px solid var(--line); border-radius:16px;
     box-shadow:0 6px 22px rgba(80,60,40,.10);
-    padding:18px 22px 16px; display:flex; flex-direction:column;
+    padding:13px 20px 12px; display:flex; flex-direction:column;
     cursor:pointer; -webkit-tap-highlight-color:transparent; user-select:none;
     min-height:0; overflow:hidden;
   }
   /* 上：分類と題 */
-  .chead{flex:0 0 auto; border-bottom:1px dashed var(--line); padding-bottom:10px; margin-bottom:8px}
+  .chead{flex:0 0 auto; border-bottom:1px dashed var(--line); padding-bottom:7px; margin-bottom:5px}
   .chead .cat{font-size:11.5px; font-weight:600; color:#fff; background:var(--brown); border-radius:11px; padding:2px 11px}
-  .chead h2{font-size:21px; margin:8px 0 0; color:var(--ink); letter-spacing:.03em; line-height:1.35}
+  .chead h2{font-size:19.5px; margin:5px 0 0; color:var(--ink); letter-spacing:.03em; line-height:1.3}
 
   /* 中：いまの一拍（大きく・中央） */
-  .beat{flex:1; display:flex; flex-direction:column; justify-content:flex-start; min-height:0; overflow:auto; padding:14px 2px 6px}
-  .beat .lbl{font-size:13px; letter-spacing:.12em; font-weight:700; margin-bottom:10px}
-  .beat .txt{font-size:19px; line-height:2.0; color:var(--ink)}
+  .beat{flex:1; display:flex; flex-direction:column; justify-content:flex-start; min-height:0; overflow:auto; padding:8px 2px 4px}
+  .beat .lbl{font-size:13px; letter-spacing:.12em; font-weight:700; margin-bottom:7px}
+  .beat .txt{font-size:18.5px; line-height:1.78; color:var(--ink)}
   .beat.toi .lbl{color:var(--toi)} .beat.mikata .lbl{color:var(--mikata)}
   .beat.kizuki .lbl{color:var(--kizuki)} .beat.hitokoto .lbl{color:var(--hitokoto)}
   .beat.hitokoto .txt{background:#f1ebdd; border:1px solid #e3d8c3; border-radius:12px; padding:16px 18px; font-weight:600}
@@ -1047,7 +1047,6 @@ window.CARDS_BUILT = "2026-06-12";
     <span class="logo"><img src="kobutta.png" alt="こぶったちゃん"></span>
     <h1>「こぶった」のひきだし<small>仏教思想と、いろんな視点</small></h1>
   </div>
-  <input class="search" id="search" placeholder="ことばで探す（例：無常）" autocomplete="off">
   <button class="dice" id="dice" title="ランダムで1枚">🎲 今日の一枚</button>
   <div class="tags" id="tags"></div>
 </header>
@@ -1183,7 +1182,6 @@ prevBtn.onclick = prevCard;
 nextBtn.onclick = nextCard;
 document.getElementById("tapbtn").onclick = onTap;
 document.getElementById("dice").onclick = randomCard;
-document.getElementById("search").addEventListener("input", e=>{ query=e.target.value; applyFilter(); });
 document.addEventListener("keydown", e=>{
   if(e.key==="ArrowRight") nextCard();
   else if(e.key==="ArrowLeft") prevCard();
