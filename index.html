@@ -1022,6 +1022,22 @@ window.CARDS_BUILT = "2026-06-12";
   .empty{flex:1; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sub); font-size:15px; padding:30px}
   .ghint{flex:0 0 auto; text-align:center; padding:7px 10px 10px; font-size:11px; color:var(--sub)}
 
+  /* 小さい画面・「画面表示を拡大」設定のとき：上下のナビを自動で縮め、中身（札）を最優先に */
+  @media (max-height: 780px){
+    .brandbar{display:none}                                   /* 著作権の帯は省く */
+    .tags{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch} /* カテゴリは横1列スワイプに */
+    .tags::-webkit-scrollbar{display:none}
+    header{padding:5px 12px 5px}
+    main{padding:4px 8px 2px}
+    .card{padding:11px 16px 10px}
+    .beat{padding:6px 2px 2px}
+    .chead h2{font-size:18px}
+    .ghint{display:none}                                      /* 下の操作ヒントも省く */
+    .controls{padding:3px 10px 5px}
+    .tapbtn{padding:12px 12px; font-size:15px}
+    .navb{width:50px; font-size:21px}
+  }
+
   /* ようこそ（戸口）画面 */
   #welcome{position:fixed; inset:0; z-index:9999; background:var(--paper); color:var(--ink);
     display:flex; align-items:center; justify-content:center; padding:32px 24px; overflow:auto;
