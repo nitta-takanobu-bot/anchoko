@@ -102,24 +102,6 @@ window.CARDS = [
     "file": "0006_八風吹けども動ぜず.md"
   },
   {
-    "title": "握る名と、送る名",
-    "category": "ご縁・人とのあいだ",
-    "scene": "名前・呼び名・法名・ブランドの話のとき",
-    "duration": "2分",
-    "source": "raw/2026-06-08_寄合_握る名と送る名.md",
-    "topics": [
-      "名づけ",
-      "法名",
-      "即非",
-      "手放す"
-    ],
-    "toi": "名前をつける、というのは、自分のものにすること、囲い込むこと――そんなふうに感じることはありませんか。",
-    "mikata": "じつは「名づけ」には、正反対の二つの向きがあります。商標やブランドの名は「名づける、ゆえに握る」――意味を一点に固定し、ほかの人を締め出して、自分のものとして確保する名です。いっぽう、亡き方に差し上げる法名は「名づける、ゆえに手放す」――その方へ贈り、所有を手放して、意味を未来へ開いていく名。同じ「名づけ」でも、握る名と、送る名は、向きが逆なのです。",
-    "kizuki": "握る名は囲い込み、送る名は手放す。お寺は、その二つを取り違えない番人なのかもしれません。",
-    "hitokoto": "名づけには〈握る〉と〈送る〉の二つの向きがある。看板や道具は握ってよい。けれど、その人そのものは、握らず送る。",
-    "file": "0007_握る名と送る名.md"
-  },
-  {
     "title": "固めるな、めくり続けよ",
     "category": "かなしみ・グリーフ",
     "scene": "大切な人やものを手放せないとき・形見や仏壇の話のとき",
@@ -1085,16 +1067,9 @@ window.CARDS_BUILT = "2026-06-12";
     <div class="w-sub">仏教の知恵と、いろんな視点を、一枚ずつ。</div>
     <div class="w-rule"></div>
     <div class="w-guide">
-      タップでめくり、左右で次の札へ。
+      タップでめくり、左右で次の札へ。順番はありません。
     </div>
-    <div class="w-pick">どこから、ひらきますか？</div>
-    <div class="w-doors">
-      <button class="w-door" onclick="enter('かなしみ・グリーフ')">かなしみ</button>
-      <button class="w-door" onclick="enter('いのち・生死')">いのち</button>
-      <button class="w-door" onclick="enter('ご縁・人とのあいだ')">ご縁</button>
-      <button class="w-door" onclick="enter('仏教思想（ものの見方）')">仏教の見方</button>
-    </div>
-    <button class="w-omakase" onclick="enter()">おまかせで一枚</button>
+    <button class="w-start" onclick="document.getElementById('welcome').style.display='none'">よ う こ そ</button>
     <div class="w-foot">佛心寺（こぶったちゃん）</div>
   </div>
 </div>
@@ -1227,18 +1202,6 @@ function onTap(){
 function nextCard(){ if(idx<view.length-1){ idx++; beat=0; render(); } }
 function prevCard(){ if(beat>0){ beat=0; render(); } else if(idx>0){ idx--; beat=0; render(); } }
 function randomCard(){ if(view.length){ idx=Math.floor(Math.random()*view.length); beat=0; render(); } }
-
-// 戸口の入口ボタン：カテゴリを選んで（無指定はおまかせ）中へ入る
-function enter(cat){
-  activeCat = cat || null;
-  query = "";
-  const sb = document.getElementById("search");
-  if(sb) sb.value = "";
-  applyFilter();
-  randomCard();
-  const w = document.getElementById("welcome");
-  if(w) w.style.display = "none";
-}
 
 function applyFilter(){
   view = ALL.filter(c => {
